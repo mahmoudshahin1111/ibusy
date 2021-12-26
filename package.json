@@ -1,0 +1,33 @@
+{
+  "name": "ibusy",
+  "version": "1.0.0",
+  "description": "time management tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest ./dist/index.spec.js",
+    "build":"tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mahmoudshahin1111/ibusy.git"
+  },
+  "keywords": [
+    "ibusy",
+    "codexline",
+    "time management tool"
+  ],
+  "author": "mahmoudshahin1111@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mahmoudshahin1111/ibusy/issues"
+  },
+  "homepage": "https://github.com/mahmoudshahin1111/ibusy#readme",
+  "devDependencies": {
+    "jest": "^27.4.5",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@types/jest": "^27.0.3"
+  }
+}

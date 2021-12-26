@@ -1,2 +1,2 @@
 # ibusy
-google chrome extention for calender time managment 
+time management tool  
