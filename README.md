@@ -93,7 +93,7 @@ call this after you accully added your allowed and disallowed periods so IBusy w
 
 ### Period
 
-|             |  Type   | Required  |   example   | Description |
+|Name|  Type   | Required  |   example   | Description |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
 |   start       | string   | true  |   2021-12-29T10:00:00.000Z | the date as string into ISO format |
 |   end         | string   | true  |   2021-12-29T23:00:00.000Z | the date as string into ISO format |
