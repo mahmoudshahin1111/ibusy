@@ -1,7 +1,6 @@
 # ibusy
 
-IBusy tool can help you to created and enhanecment your time management tools and make them better and easier to make them because 
-IBusy has a great features can help you in that.
+IBusy tool can help you to created and enhanecment your time management tools and make them better and easier to make them because IBusy has a great features can help you in that.
 1- By IBusy you can get the free period between multaple periods 
 Ex..
 likes if you have a person and he is working in spacifice times also he has holidays and absences and times he isn't available into so you can get only the times he available into between these periods 
@@ -27,7 +26,7 @@ You will get the unique period only
 ```
 Tecnology and Dependances:
 
-|             | Version     |
+|Name| Version     |
 | ----------- | ----------- |
 |   moment    |   2.29.1    |
 
@@ -48,11 +47,40 @@ Just simple to get the free periods
 ## Functions
 
 ### addAvailabilityPeriod
-Attributes (Input)
-|             |  Type   | Required  |   example   | Description |
+
+add an allowed period and it takes 1 argument of type `Period` and you can repeat this function to add more periods as you want
+
+#### Inputs
+|Name|  Type   | Required  |   example   | Description |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
 |   start     | string  |   2021-12-29T10:00:00.000Z | the date as string into ISO format |
 |   end     | string  |   2021-12-29T23:00:00.000Z | the date as string into ISO format |
+
+### Returns 
+Refrance to `IBusy` object
+
+### addAppointmentPeriod
+
+add an disallowed period and it takes 1 argument of type `Period`   and you can repeat this function to add more periods as you want
+
+#### Inputs
+|Name|  Type   | Required  |   example   | Description |
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+|   start     | string  |   2021-12-29T10:00:00.000Z | the date as string into ISO format |
+|   end     | string  |   2021-12-29T23:00:00.000Z | the date as string into ISO format |
+
+### Returns 
+Refrance to `IBusy` object
+
+### getFreePeriods
+
+call this after you accully added your allowed and disallowed periods so IBusy will return the allowed periods after remove the disallowed periods.
+
+#### Outputs
+|Name|  Type   | Required  |   example   | Description |
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+|   start     | string  |   2021-12-29T10:00:00.000Z | the  start of the time you are will be available as ISO date format  |
+|   end     | string  |   2021-12-29T23:00:00.000Z |  the  end of the time you are will be available as ISO date format  |
 
 ## Types
 
