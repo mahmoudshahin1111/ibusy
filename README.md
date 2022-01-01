@@ -9,17 +9,21 @@ likes if you have a person and he is working in spacifice times also he has holi
 Ex..
 if you have many dates and periods into an array and you need to remove the duplications and nested array 
 and get only the unique periods like that 
-``` json
+```javascript
+[
    { start: "2021-12-29T10:00:00.000Z", end: "2021-12-29T15:00:00.000Z" }
    { start: "2021-12-29T14:00:00.000Z", end: "2021-12-29T16:00:00.000Z" }
    { start: "2021-12-29T16:00:00.000Z", end: "2021-12-29T20:00:00.000Z" }
    { start: "2021-12-29T19:00:00.000Z", end: "2021-12-29T23:00:00.000Z" }
    { start: "2021-12-29T21:00:00.000Z", end: "2021-12-29T23:00:00.000Z" }
+]
 ```
 You will get the unique period only 
 
-```json
+```javascript
+[
 { start: "2021-12-29T10:00:00.000Z", end: "2021-12-29T23:00:00.000Z" }
+]
 ```
 Tecnology and Dependances:
 
