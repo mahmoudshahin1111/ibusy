@@ -1,6 +1,6 @@
-# ibusy
+# IBusy
 
-IBusy tool can help you to created and enhanecment your time management tools and make them better and easier to make them because IBusy has a great features can help you in that.
+IBusy tool can help you to created and enhancement your time management tools and make them better and easier to make them because IBusy has a great features can help you in that.
 1- By IBusy you can get the free period between multaple periods 
 Ex..
 likes if you have a person and he is working in spacifice times also he has holidays and absences and times he isn't available into so you can get only the times he available into between these periods 
@@ -29,6 +29,13 @@ Tecnology and Dependances:
 |Name| Version     |
 | ----------- | ----------- |
 |   moment    |   2.29.1    |
+
+Dev
+
+|Name| Version    |
+| -----------     | ----------- |
+|   typescript    |   4.5.4    |
+|     jest        |   27.0.3    |
 
 ## let's know how we can do that 
 
