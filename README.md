@@ -60,8 +60,8 @@ add an allowed period and it takes 1 argument of type `Period` and you can repea
 #### Inputs
 |Name|  Type   | Required  |   example   | Description |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
-|   start     | true | string  |   2021-12-29T10:00:00.000Z | the date as string into ISO format |
-|   end       | true | string  |   2021-12-29T23:00:00.000Z | the date as string into ISO format |
+|   start   | string  | true   |   2021-12-29T10:00:00.000Z | the date as string into ISO format |
+|   end      | string   | true  |   2021-12-29T23:00:00.000Z | the date as string into ISO format |
 
 ### Returns 
 Refrance to `IBusy` object
@@ -73,8 +73,8 @@ add an disallowed period and it takes 1 argument of type `Period`   and you can 
 #### Inputs
 |Name|  Type   | Required  |   example   | Description |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
-|   start      | true  | string  |   2021-12-29T10:00:00.000Z | the date as string into ISO format |
-|   end       | true | string  |   2021-12-29T23:00:00.000Z | the date as string into ISO format |
+|   start      | string    | true |   2021-12-29T10:00:00.000Z | the date as string into ISO format |
+|   end       | string   | true  |   2021-12-29T23:00:00.000Z | the date as string into ISO format |
 
 ### Returns 
 Refrance to `IBusy` object
@@ -86,8 +86,8 @@ call this after you accully added your allowed and disallowed periods so IBusy w
 #### Outputs
 |Name|  Type   | Required  |   example   | Description |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
-|   start      | true  | string  |   2021-12-29T10:00:00.000Z | the  start of the time you are will be available as ISO date format  |
-|   end      | true  | string  |   2021-12-29T23:00:00.000Z |  the  end of the time you are will be available as ISO date format  |
+|   start      | string   | true  |   2021-12-29T10:00:00.000Z | the  start of the time you are will be available as ISO date format  |
+|   end       | string    | true |   2021-12-29T23:00:00.000Z |  the  end of the time you are will be available as ISO date format  |
 
 ## Types
 
@@ -95,6 +95,6 @@ call this after you accully added your allowed and disallowed periods so IBusy w
 
 |             |  Type   | Required  |   example   | Description |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
-|   start     | true  | string  |   2021-12-29T10:00:00.000Z | the date as string into ISO format |
-|   end        | true  | string  |   2021-12-29T23:00:00.000Z | the date as string into ISO format |
+|   start       | string   | true  |   2021-12-29T10:00:00.000Z | the date as string into ISO format |
+|   end         | string   | true  |   2021-12-29T23:00:00.000Z | the date as string into ISO format |
 
