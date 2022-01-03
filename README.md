@@ -42,11 +42,13 @@ Dev
 
 ## let's know how we can do that
 
-Just simple to get the free periods
-1- enter the allowed periods.
-2- ender the disallowed periods.
-3- get the free or available periods by calling `getAllowedPeriodsBetween`
- function just simple 😉
+Just simple to get the free periods.
+
+1 - enter the allowed periods.
+2 - ender the disallowed periods.
+3 - get the free or available periods by calling `getAllowedPeriodsBetween`
+ function just simple 😉.
+ 
 ```typescript
 const ibusy = new IBusy();
 const periods = ibusy.getAllowedPeriodsBetween(
