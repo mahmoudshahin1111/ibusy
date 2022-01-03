@@ -18,10 +18,6 @@
   },
   "homepage": "https://github.com/mahmoudshahin1111/ibusy#readme",
   "main": "index.js",
-  "scripts": {
-    "test": "jest ./dist/index.spec.js",
-    "build": "tsc"
-  },
   "keywords": [
     "ibusy",
     "codexline",
