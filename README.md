@@ -48,7 +48,7 @@ Just simple to get the free periods.
 2 - ender the disallowed periods.
 3 - get the free or available periods by calling `getAllowedPeriodsBetween`
  function just simple 😉.
- 
+
 ```typescript
 const ibusy = new IBusy();
 const periods = ibusy.getAllowedPeriodsBetween(
@@ -97,3 +97,7 @@ pass your allowed and disallowed periods as arguments then IBusy will return the
 | startTime | number | true     | 360000                   | the start date into milliseconds                            |
 | endTime   | number | true     | 360000                   | the end date into milliseconds                              |
 | duration  | number | true     | 480                      | the difference between end and start date into milliseconds |
+
+## Contribution
+
+I welcome you to fork and add more features into it. If you have any bugs or feature request, please create an issue at [github repository](https://github.com/mahmoudshahin1111/ibusy/issues).
