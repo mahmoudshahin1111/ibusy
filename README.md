@@ -1,10 +1,12 @@
 # IBusy
 
 IBusy tool can help you to created and enhancement your time management tools and make them better and easier to make them because IBusy has a great features can help you in that.
-1- By IBusy you can get the free period between multiple periods
+
+1 - By IBusy you can get the free period between multiple periods
 Ex..
-likes if you have a person and he is working in specifics times also he has holidays and absences and times he isn't available into so you can get only the times he available into between these periods
-2- By IBusy you can filter and sort the duplication between multiple periods
+likes if you have a person and he is working in specifics times also he has holidays and absences and times he isn't available into so you can get only the times he available into between these periods.
+
+2 - By IBusy you can filter and sort the duplication between multiple periods
 Ex..
 if you have many dates and periods into an array and you need to remove the duplications and nested array
 and get only the unique periods like that
