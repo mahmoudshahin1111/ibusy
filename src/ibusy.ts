@@ -12,24 +12,34 @@ export class IBusy {
       locale: "en-US"
     };
   }
+  /**
+   * get the allowed periods between these periods, also can be into different days
+   * @param allowedPeriods 
+   * @param disallowedPeriods 
+   * @returns 
+   */
   getAllowedPeriodsBetween(allowedPeriods: InputPeriod[], disallowedPeriods: InputPeriod[]): Period[] | null {
     const transformedAllowedPeriods: Period[] = [];
     for (const allowedPeriod of allowedPeriods) {
-      if (!this.isPeriodValid(allowedPeriod)) {
-        throw Error.make(ErrorCodes.ER_1);
+      if (!this.periodValidator.isEndDateAfterStartDate(allowedPeriod)) {
+        throw Error.make(ErrorCodes.ER_PERIOD_START_DATE_AFTER_END_DATE);
+      } else if (!this.periodValidator.isUniquePeriod(transformedAllowedPeriods, allowedPeriod)) {
+        throw Error.make(ErrorCodes.ER_EXISTS_INTO_ALLOW_PERIODS);
       }
       transformedAllowedPeriods.push(this.transformToPeriod(allowedPeriod));
     }
     const transformedDisallowedPeriods: Period[] = [];
     for (const disallowedPeriod of disallowedPeriods) {
-      if (!this.isPeriodValid(disallowedPeriod)) {
-        throw Error.make(ErrorCodes.ER_1);
+      if (!this.periodValidator.isEndDateAfterStartDate(disallowedPeriod)) {
+        throw Error.make(ErrorCodes.ER_PERIOD_START_DATE_AFTER_END_DATE);
+      } else if (!this.periodValidator.isUniquePeriod(transformedDisallowedPeriods, disallowedPeriod)) {
+        throw Error.make(ErrorCodes.ER_EXISTS_INTO_Disallowed_PERIODS);
       }
       transformedDisallowedPeriods.push(this.transformToPeriod(disallowedPeriod));
     }
-    const filteredAllowedPeriods: Period[] = [];
     const filteredAvailablePeriods: Period[] = this.sortingAndMergePeriods(transformedAllowedPeriods);
     const filteredAppointmentPeriods: Period[] = this.sortingAndMergePeriods(transformedDisallowedPeriods);
+    const filteredAllowedPeriods: Period[] = [];
     for (const allowedPeriod of filteredAvailablePeriods) {
       let currentPeriodStartTime = allowedPeriod.startTime;
       let currentPeriodEndTime = allowedPeriod.endTime;
@@ -73,6 +83,11 @@ export class IBusy {
 
     return filteredAllowedPeriods;
   }
+  /**
+   * transform the input period to the period of type ca i use into ibusy 
+   * @param inputPeriod 
+   * @returns 
+   */
   transformToPeriod(inputPeriod: InputPeriod): Period {
     return {
       start: this.convertToDate(this.convertDateToUnit(inputPeriod.start, TimeUnit.millSeconds)),
@@ -82,9 +97,20 @@ export class IBusy {
       duration: this.convertDateToUnit(inputPeriod.end, this.timeUnit) - this.convertDateToUnit(inputPeriod.start, this.timeUnit)
     };
   }
+  /**
+   * convert the date of milliseconds to date object
+   * @param millSeconds 
+   * @returns 
+   */
   convertToDate(millSeconds: number): string {
     return new Date(millSeconds).toISOString();
   }
+  /**
+   * convert the date as string formatted in "YYYY-MM-DDTHH:mm:ss.sssZ" to selected unit 
+   * @param date 
+   * @param unit 
+   * @returns 
+   */
   convertDateToUnit(date: string, unit: TimeUnit): number {
     const millSeconds = new Date(date).getTime();
     const timezoneMillSeconds = 0; //new Date().getTimezoneOffset() * 60 * 1000;
@@ -99,9 +125,11 @@ export class IBusy {
         return millSeconds + timezoneMillSeconds;
     }
   }
-  isPeriodValid(period: InputPeriod) {
-    return this.periodValidator.isPeriodDateIsValid(period);
-  }
+  /**
+   * get a filtered periods after remove every overlapped periods and sorting them
+   * @param periods the period has overlapped periods 
+   * @returns 
+   */
   sortingAndMergePeriods(periods: Period[]): Period[] {
     const mergedPeriods: Period[] = [];
     periods = periods.sort((prev: Period, current: Period) => {
