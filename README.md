@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/ibusy.svg)](https://badge.fury.io/js/ibusy) [![CircleCI](https://github.com/mahmoudshahin1111/ibusy/actions/workflows/main.yml/badge.svg)](https://github.com/mahmoudshahin1111/ibusy/actions/workflows/test.yml)
+
 # IBusy
 
 IBusy tool can help you to created and enhancement your time management tools and make them better and easier to make them because IBusy has a great features can help you in that.
