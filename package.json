@@ -1,6 +1,6 @@
 {
   "name": "ibusy",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "time management tool",
   "repository": {
     "type": "git",
@@ -19,8 +19,8 @@
   "homepage": "https://github.com/mahmoudshahin1111/ibusy#readme",
   "main": "index.js",
   "scripts": {
-    "test": "jest ./dist/index.spec.js",
-    "build": "tsc"
+    "test": "jest ./dist",
+    "build": "tsc && npx webpack"
   },
   "keywords": [
     "ibusy",
@@ -28,10 +28,12 @@
     "time management tool"
   ],
   "devDependencies": {
+    "@types/jest": "^27.0.3",
     "jest": "^27.4.5",
     "ts-loader": "^9.2.6",
     "typescript": "^4.5.4",
-    "@types/jest": "^27.0.3"
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
   },
   "dependencies": {
     "@types/moment": "^2.13.0",

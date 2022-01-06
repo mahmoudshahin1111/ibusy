@@ -1,4 +1,6 @@
-import { IBusy, Period, TimeUnit } from ".";
+import { IBusy } from ".";
+import { Period, TimeUnit } from ".";
+
 
 test("IBusy is defined", () => {
   const ibusy = new IBusy();

@@ -2,7 +2,7 @@ import { ErrorCodes, Error } from "./error";
 import { Config, TimeUnit, InputPeriod, Period } from "./types";
 import { PeriodValidator } from "./validators";
 
-export class IBusy {
+export  class IBusy {
   private _config: Config | undefined;
   private timeUnit: TimeUnit = TimeUnit.millSeconds;
   private periodValidator: PeriodValidator = new PeriodValidator();
@@ -19,6 +19,7 @@ export class IBusy {
    * @returns 
    */
   getAllowedPeriodsBetween(allowedPeriods: InputPeriod[], disallowedPeriods: InputPeriod[]): Period[] | null {
+
     const transformedAllowedPeriods: Period[] = [];
     for (const allowedPeriod of allowedPeriods) {
       if (!this.periodValidator.isEndDateAfterStartDate(allowedPeriod)) {
@@ -37,6 +38,8 @@ export class IBusy {
       }
       transformedDisallowedPeriods.push(this.transformToPeriod(disallowedPeriod));
     }
+    if(!transformedAllowedPeriods?.length) return transformedAllowedPeriods;
+    else if(!transformedDisallowedPeriods?.length) return transformedDisallowedPeriods;
     const filteredAvailablePeriods: Period[] = this.sortingAndMergePeriods(transformedAllowedPeriods);
     const filteredAppointmentPeriods: Period[] = this.sortingAndMergePeriods(transformedDisallowedPeriods);
     const filteredAllowedPeriods: Period[] = [];

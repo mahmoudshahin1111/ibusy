@@ -42,6 +42,10 @@ var IBusy = /** @class */ (function () {
             }
             transformedDisallowedPeriods.push(this.transformToPeriod(disallowedPeriod));
         }
+        if (!(transformedAllowedPeriods === null || transformedAllowedPeriods === void 0 ? void 0 : transformedAllowedPeriods.length))
+            return transformedAllowedPeriods;
+        else if (!(transformedDisallowedPeriods === null || transformedDisallowedPeriods === void 0 ? void 0 : transformedDisallowedPeriods.length))
+            return transformedDisallowedPeriods;
         var filteredAvailablePeriods = this.sortingAndMergePeriods(transformedAllowedPeriods);
         var filteredAppointmentPeriods = this.sortingAndMergePeriods(transformedDisallowedPeriods);
         var filteredAllowedPeriods = [];

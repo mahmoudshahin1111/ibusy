@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _1 = require(".");
+var _2 = require(".");
 test("IBusy is defined", function () {
     var ibusy = new _1.IBusy();
     expect(ibusy).toBeDefined();
@@ -43,11 +44,11 @@ test("convertTo24Time", function () {
 });
 test("convertDateToUnit", function () {
     var ibusy = new _1.IBusy();
-    var result = ibusy.convertDateToUnit("2021-12-29T02:00:00.000Z", _1.TimeUnit.hours);
+    var result = ibusy.convertDateToUnit("2021-12-29T02:00:00.000Z", _2.TimeUnit.hours);
     expect(result).toEqual(455762);
-    result = ibusy.convertDateToUnit("2021-12-29T10:00:00.000Z", _1.TimeUnit.minutes);
+    result = ibusy.convertDateToUnit("2021-12-29T10:00:00.000Z", _2.TimeUnit.minutes);
     expect(result).toEqual(27346200);
-    result = ibusy.convertDateToUnit("2021-12-29T20:00:00.000Z", _1.TimeUnit.seconds);
+    result = ibusy.convertDateToUnit("2021-12-29T20:00:00.000Z", _2.TimeUnit.seconds);
     expect(result).toEqual(1640808000);
 });
 test("sortingAndMergePeriods", function () {
