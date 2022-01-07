@@ -4,7 +4,7 @@
 
 ![logo](https://github.com/mahmoudshahin1111/ibusy/blob/master/e2e/logo.png)
 
-IBusy tool can help you to created and enhancement your time management tools and make them better and easier to make them because IBusy has a great features can help you in that.
+IBusy tool can help you to create and enhance your time management tools and make them better and easier to make them because IBusy has great features that can help you in that.
 
 1 - By IBusy you can get the free period between multiple periods
 Ex..
