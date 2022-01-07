@@ -15,23 +15,23 @@ test("getAllowedPeriodsBetween", function () {
     expect(filteredAllowedPeriods).toEqual([
         {
             duration: 3600000,
-            end: "2021-12-29T06:00:00.000Z",
+            end: new Date(1640757600000).toString(),
             endTime: 1640757600000,
-            start: "2021-12-29T05:00:00.000Z",
+            start: new Date(1640754000000).toString(),
             startTime: 1640754000000
         },
         {
             duration: 3600000,
-            end: "2021-12-29T13:00:00.000Z",
+            end: new Date(1640782800000).toString(),
             endTime: 1640782800000,
-            start: "2021-12-29T12:00:00.000Z",
+            start: new Date(1640779200000).toString(),
             startTime: 1640779200000
         },
         {
             duration: 3600000,
-            end: "2021-12-29T22:00:00.000Z",
+            end: new Date(1640815200000).toString(),
             endTime: 1640815200000,
-            start: "2021-12-29T21:00:00.000Z",
+            start: new Date(1640811600000).toString(),
             startTime: 1640811600000
         }
     ]);
@@ -40,7 +40,7 @@ test("convertTo24Time", function () {
     var ibusy = new _1.IBusy();
     var date = "2021-12-29T10:00:00.000Z";
     var result = ibusy.convertToDate(new Date(date).getTime());
-    expect(result).toEqual(date);
+    expect(result).toEqual(new Date(date).toString());
 });
 test("convertDateToUnit", function () {
     var ibusy = new _1.IBusy();
@@ -61,6 +61,6 @@ test("sortingAndMergePeriods", function () {
         ibusy.transformToPeriod({ start: "2021-12-29T21:00:00.000Z", end: "2021-12-29T23:00:00.000Z" })
     ]);
     expect(filteredPeriods).toEqual([
-        { duration: 46800000, end: "2021-12-29T23:00:00.000Z", endTime: 1640818800000, start: "2021-12-29T10:00:00.000Z", startTime: 1640772000000 }
+        { duration: 46800000, end: new Date(1640818800000).toString(), endTime: 1640818800000, start: new Date(1640772000000).toString(), startTime: 1640772000000 }
     ]);
 });
