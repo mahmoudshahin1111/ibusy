@@ -19,7 +19,7 @@
   "homepage": "https://github.com/mahmoudshahin1111/ibusy#readme",
   "main": "index.js",
   "scripts": {
-    "test": "jest ./dist",
+    "test": "jest ./dist/bundle",
     "build": "tsc && npx webpack"
   },
   "keywords": [

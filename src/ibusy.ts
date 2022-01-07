@@ -106,7 +106,7 @@ export  class IBusy {
    * @returns 
    */
   convertToDate(millSeconds: number): string {
-    return new Date(millSeconds).toISOString();
+    return new Date(millSeconds).toString();
   }
   /**
    * convert the date as string formatted in "YYYY-MM-DDTHH:mm:ss.sssZ" to selected unit 

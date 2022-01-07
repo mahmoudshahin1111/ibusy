@@ -15,7 +15,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
-    filename: 'bundle.js',
+    filename: 'ibusy.js',
     path: path.resolve(__dirname, 'dist'),
     libraryTarget: "var",
     library: "ibusy",
