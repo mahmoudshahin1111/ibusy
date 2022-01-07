@@ -15,6 +15,8 @@ Ex..
 if you have many dates and periods into an array and you need to remove the duplications and nested array
 and get only the unique periods like that
 
+[Demo](https://mahmoudshahin1111.github.io/ibusy/)
+
 ```javascript
 [
    { start: "2021-12-29T10:00:00.000Z", end: "2021-12-29T15:00:00.000Z" }
