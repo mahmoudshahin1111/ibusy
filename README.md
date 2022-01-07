@@ -17,6 +17,14 @@ and get only the unique periods like that
 
 [Demo](https://mahmoudshahin1111.github.io/ibusy/)
 
+
+## Install
+
+```
+npm i ibusy
+```
+
+
 ```javascript
 [
    { start: "2021-12-29T10:00:00.000Z", end: "2021-12-29T15:00:00.000Z" }
