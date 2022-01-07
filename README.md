@@ -1,4 +1,4 @@
-[![npm version](https://badge.fury.io/js/ibusy.svg)](https://badge.fury.io/js/ibusy) [![CircleCI](https://github.com/mahmoudshahin1111/ibusy/actions/workflows/test.yml/badge.svg)](https://github.com/mahmoudshahin1111/ibusy/actions/workflows/test.yml)
+[![npm version](https://badge.fury.io/js/ibusy.svg)](https://badge.fury.io/js/ibusy) [![CI/CD](https://github.com/mahmoudshahin1111/ibusy/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/mahmoudshahin1111/ibusy/actions/workflows/test.yml)
 
 # IBusy
 
