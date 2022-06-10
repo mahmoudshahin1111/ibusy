@@ -55,18 +55,21 @@ You will get the unique period only
 
 Just simple to get the free periods.
 
-```javascript
-const ibusy = new IBusy();
-const periods = ibusy.getAllowedPeriodsBetween(
-  [{ start: "2021-12-29T05:00:00.000Z", end: "2021-12-29T22:00:00.000Z" }],
-  [
-    { start: "2021-12-29T06:00:00.000Z", end: "2021-12-29T12:00:00.000Z" },
-    { start: "2021-12-29T13:00:00.000Z", end: "2021-12-29T21:00:00.000Z" },
-  ]
-);
+```html
+    <script src="https://cdn.jsdelivr.net/npm/ibusy@latest/dist/ibusy.js"></script>
+    <script>
+        const _ibusy = new ibusy.IBusy();
+        const periods = _ibusy.getAllowedPeriodsBetween(
+            [{ start: "2021-12-29T05:00:00.000Z", end: "2021-12-29T22:00:00.000Z" }],
+            [
+                { start: "2021-12-29T06:00:00.000Z", end: "2021-12-29T12:00:00.000Z" },
+                { start: "2021-12-29T13:00:00.000Z", end: "2021-12-29T21:00:00.000Z" },
+            ]
+        );
+    </script>
 ```
 
-Get the free or available periods by calling `getAllowedPeriodsBetween`
+Get the free or available periods by calling `getAllowedPeriodsBetween` of the global object `ibusy`
 and first argument will be the allowed periods.
 and second argument will be the disallowed periods.
 
