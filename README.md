@@ -31,42 +31,25 @@ npm i ibusy
 
 ## Overview
 
-### Example for an Input :
-
-```javascript
-[
-   { start: "2021-12-29T10:00:00.000Z", end: "2021-12-29T15:00:00.000Z" }
-   { start: "2021-12-29T14:00:00.000Z", end: "2021-12-29T16:00:00.000Z" }
-   { start: "2021-12-29T16:00:00.000Z", end: "2021-12-29T20:00:00.000Z" }
-   { start: "2021-12-29T19:00:00.000Z", end: "2021-12-29T23:00:00.000Z" }
-   { start: "2021-12-29T21:00:00.000Z", end: "2021-12-29T23:00:00.000Z" }
-]
-```
-
-### Example for the Output :
-
-You will get the unique period only
-
-```javascript
-[{ start: "2021-12-29T10:00:00.000Z", end: "2021-12-29T23:00:00.000Z" }];
-```
-
-## Let's know how we can do that
-
-Just simple to get the free periods.
-
 ```html
-    <script src="https://cdn.jsdelivr.net/npm/ibusy@latest/dist/ibusy.js"></script>
-    <script>
-        const _ibusy = new ibusy.IBusy();
-        const periods = _ibusy.getAllowedPeriodsBetween(
-            [{ start: "2021-12-29T05:00:00.000Z", end: "2021-12-29T22:00:00.000Z" }],
-            [
-                { start: "2021-12-29T06:00:00.000Z", end: "2021-12-29T12:00:00.000Z" },
-                { start: "2021-12-29T13:00:00.000Z", end: "2021-12-29T21:00:00.000Z" },
-            ]
-        );
-    </script>
+<script src="https://cdn.jsdelivr.net/npm/ibusy@latest/dist/ibusy.js"></script>
+<script>
+  const _ibusy = new ibusy.IBusy();
+  const periods = _ibusy.getAllowedPeriodsBetween(
+    [
+      {
+        start: new Date("2021-12-29T01:00:00.000Z").getTime(),
+        end: new Date("2021-12-29T22:00:00.000Z").getTime(),
+      },
+    ],
+    [
+      {
+        start: new Date("2021-12-29T02:00:00.000Z").getTime(),
+        end: new Date("2021-12-29T21:00:00.000Z").getTime(),
+      },
+    ]
+  );
+</script>
 ```
 
 Get the free or available periods by calling `getAllowedPeriodsBetween` of the global object `ibusy`
@@ -92,43 +75,37 @@ Pass your allowed and disallowed periods as arguments then IBusy will return the
 
 - Returns:
 
-| Type        | Description    |
-| --- | ---- |                                        
-|  `Array<InputPeriod>`   | array of type `InputPeriod` for the available or allowed periods between the two inputs allowed and disallowed periods |
+| Type                 | Description                                                                                                            |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `Array<InputPeriod>` | array of type `InputPeriod` for the available or allowed periods between the two inputs allowed and disallowed periods |
 
-## Extra
-
-### Types
+## Types
 
 - `InputPeriod`
 
-| Name  | Type     | Required | Description                                         | Example                  |
-| ----- | -------- | -------- | --------------------------------------------------- | ------------------------ |
-| start | `string` | true     | date as string formatted `YYYY-MM-DDTHH:mm:ss.sssZ` | 2021-12-29T10:00:00.000Z |
-| end   | `string` | true     | date as string formatted `YYYY-MM-DDTHH:mm:ss.sssZ` | 2021-12-29T10:00:00.000Z |
+| Name  | Type     | Required | Example       | Description              |
+| ----- | -------- | -------- | ------------- | ------------------------ |
+| start | `number` | true     | 1640739600000 | The date as milliseconds |
+| end   | `number` | true     | 1640743200000 | The date as milliseconds |
 
 - `Period`
 
-| Name      | Type   | Required | example                  | Description                                                 |
-| --------- | ------ | -------- | ------------------------ | ----------------------------------------------------------- |
-| start     | string | true     | 2021-12-29T10:00:00.000Z | the date as string into ISO format                          |
-| end       | string | true     | 2021-12-29T23:00:00.000Z | the date as string into ISO format                          |
-| startTime | number | true     | 360000                   | the start date into milliseconds                            |
-| endTime   | number | true     | 360000                   | the end date into milliseconds                              |
-| duration  | number | true     | 480                      | the difference between end and start date into milliseconds |
+| Name     | Type     | Required | Example       | Description                                                 |
+| -------- | -------- | -------- | ------------- | ----------------------------------------------------------- |
+| start    | `number` | true     | 1640739600000 | The date as milliseconds                                    |
+| end      | `number` | true     | 1640743200000 | The date as milliseconds                                    |
+| duration | `number` | true     | 480           | The difference between end and start date into milliseconds |
 
-Dependances:
+- Dependencies:
+  | Name | Version |
+  | ------ | ------- |
+  | moment | 2.29.1 |
 
-| Name   | Version |
-| ------ | ------- |
-| moment | 2.29.1  |
-
-Dev
-
-| Name       | Version |
-| ---------- | ------- |
-| typescript | 4.5.4   |
-| jest       | 27.0.3  |
+- Dev
+  | Name | Version |
+  | ---------- | ------- |
+  | typescript | 4.5.4 |
+  | jest | 27.0.3 |
 
 ## Contribution
 
