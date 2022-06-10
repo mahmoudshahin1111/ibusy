@@ -17,13 +17,21 @@ and get only the unique periods like that
 
 [Demo](https://mahmoudshahin1111.github.io/ibusy/)
 
+## Installation
 
-## Install
+```html
+<script src="https://cdn.jsdelivr.net/npm/ibusy@latest/dist/ibusy.js"></script>
+```
+
+Or NPM
 
 ```
 npm i ibusy
 ```
 
+## Overview
+
+### Example for an Input :
 
 ```javascript
 [
@@ -35,13 +43,78 @@ npm i ibusy
 ]
 ```
 
+### Example for the Output :
+
 You will get the unique period only
 
 ```javascript
 [{ start: "2021-12-29T10:00:00.000Z", end: "2021-12-29T23:00:00.000Z" }];
 ```
 
-Tecnology and Dependances:
+## Let's know how we can do that
+
+Just simple to get the free periods.
+
+```javascript
+const ibusy = new IBusy();
+const periods = ibusy.getAllowedPeriodsBetween(
+  [{ start: "2021-12-29T05:00:00.000Z", end: "2021-12-29T22:00:00.000Z" }],
+  [
+    { start: "2021-12-29T06:00:00.000Z", end: "2021-12-29T12:00:00.000Z" },
+    { start: "2021-12-29T13:00:00.000Z", end: "2021-12-29T21:00:00.000Z" },
+  ]
+);
+```
+
+Get the free or available periods by calling `getAllowedPeriodsBetween`
+and first argument will be the allowed periods.
+and second argument will be the disallowed periods.
+
+Just simple 😉.
+
+## API
+
+```javascript
+getAllowedPeriodsBetween(allowedPeriods, disallowedPeriods);
+```
+
+Pass your allowed and disallowed periods as arguments then IBusy will return the allowed periods after remove the disallowed periods sorted and filtered and detailed so you can use after that.
+
+- Arguments:
+
+| Name              | Type                 | Required | Description                                                           |
+| ----------------- | -------------------- | -------- | --------------------------------------------------------------------- |
+| allowedPeriods    | `Array<InputPeriod>` | true     | array of type `InputPeriod` for the available or allowed periods      |
+| disallowedPeriods | `Array<InputPeriod>` | true     | array of type `InputPeriod` for the unavailable or disallowed periods |
+
+- Returns:
+
+| Type        | Description    |
+| --- | ---- |                                        
+|  `Array<InputPeriod>`   | array of type `InputPeriod` for the available or allowed periods between the two inputs allowed and disallowed periods |
+
+## Extra
+
+### Types
+
+- `InputPeriod`
+
+| Name  | Type     | Required | Description                                         | Example                  |
+| ----- | -------- | -------- | --------------------------------------------------- | ------------------------ |
+| start | `string` | true     | date as string formatted `YYYY-MM-DDTHH:mm:ss.sssZ` | 2021-12-29T10:00:00.000Z |
+| end   | `string` | true     | date as string formatted `YYYY-MM-DDTHH:mm:ss.sssZ` | 2021-12-29T10:00:00.000Z |
+
+- `Period`
+
+| Name      | Type   | Required | example                  | Description                                                 |
+| --------- | ------ | -------- | ------------------------ | ----------------------------------------------------------- |
+| start     | string | true     | 2021-12-29T10:00:00.000Z | the date as string into ISO format                          |
+| end       | string | true     | 2021-12-29T23:00:00.000Z | the date as string into ISO format                          |
+| startTime | number | true     | 360000                   | the start date into milliseconds                            |
+| endTime   | number | true     | 360000                   | the end date into milliseconds                              |
+| duration  | number | true     | 480                      | the difference between end and start date into milliseconds |
+
+Dependances:
 
 | Name   | Version |
 | ------ | ------- |
@@ -53,64 +126,6 @@ Dev
 | ---------- | ------- |
 | typescript | 4.5.4   |
 | jest       | 27.0.3  |
-
-## let's know how we can do that
-
-Just simple to get the free periods.
-
-1 - enter the allowed periods.
-2 - ender the disallowed periods.
-3 - get the free or available periods by calling `getAllowedPeriodsBetween`
- function just simple 😉.
-
-```typescript
-const ibusy = new IBusy();
-const periods = ibusy.getAllowedPeriodsBetween(
-  [{ start: "2021-12-29T05:00:00.000Z", end: "2021-12-29T22:00:00.000Z" }],
-  [
-    { start: "2021-12-29T06:00:00.000Z", end: "2021-12-29T12:00:00.000Z" },
-    { start: "2021-12-29T13:00:00.000Z", end: "2021-12-29T21:00:00.000Z" }
-  ]
-);
-```
-
-## Functions
-
-### getAllowedPeriodsBetween
-
-pass your allowed and disallowed periods as arguments then IBusy will return the allowed periods after remove the disallowed periods sorted and filtered and detailed so you can use after that.
-
-#### Inputs
-
-| Name              | Type                 | Required | Description                                                           |
-| ----------------- | -------------------- | -------- | --------------------------------------------------------------------- |
-| allowedPeriods    | `Array<InputPeriod>` | true     | array of type `InputPeriod` for the available or allowed periods      |
-| disallowedPeriods | `Array<InputPeriod>` | true     | array of type `InputPeriod` for the unavailable or disallowed periods |
-
-#### Outputs
-
-| Type                 | Required | Description                                                                                                            |
-| -------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `Array<InputPeriod>` | true     | array of type `InputPeriod` for the available or allowed periods between the two inputs allowed and disallowed periods |
-
-## Types
-
-`InputPeriod`
-
-| Name  | Type     | Required | Description                                         | Example                  |
-| ----- | -------- | -------- | --------------------------------------------------- | ------------------------ |
-| start | `string` | true     | date as string formatted `YYYY-MM-DDTHH:mm:ss.sssZ` | 2021-12-29T10:00:00.000Z |
-| end   | `string` | true     | date as string formatted `YYYY-MM-DDTHH:mm:ss.sssZ` | 2021-12-29T10:00:00.000Z |
-
-`Period`
-
-| Name      | Type   | Required | example                  | Description                                                 |
-| --------- | ------ | -------- | ------------------------ | ----------------------------------------------------------- |
-| start     | string | true     | 2021-12-29T10:00:00.000Z | the date as string into ISO format                          |
-| end       | string | true     | 2021-12-29T23:00:00.000Z | the date as string into ISO format                          |
-| startTime | number | true     | 360000                   | the start date into milliseconds                            |
-| endTime   | number | true     | 360000                   | the end date into milliseconds                              |
-| duration  | number | true     | 480                      | the difference between end and start date into milliseconds |
 
 ## Contribution
 
