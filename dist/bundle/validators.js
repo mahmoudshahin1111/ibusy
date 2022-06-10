@@ -11,7 +11,7 @@ var PeriodValidator = /** @class */ (function () {
         return true;
     };
     PeriodValidator.prototype.isUniquePeriod = function (periods, period) {
-        return !periods.find(function (existPeriod) { return period === existPeriod; });
+        return !periods.find(function (existPeriod) { return period.start === existPeriod.start && period.end === existPeriod.end; });
     };
     return PeriodValidator;
 }());

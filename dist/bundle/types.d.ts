@@ -1,19 +1,11 @@
-export declare enum TimeUnit {
-    hours = 0,
-    minutes = 1,
-    seconds = 2,
-    millSeconds = 3
-}
 export interface Period {
-    start: string;
-    end: string;
-    startTime: number;
-    endTime: number;
+    start: number;
+    end: number;
     duration: number;
 }
 export interface InputPeriod {
-    start: string;
-    end: string;
+    start: number;
+    end: number;
 }
 export interface Config {
     dateFormat: string;
