@@ -1,4 +1,4 @@
-import { InputPeriod } from "./types";
+import { InputPeriod, Period } from "./types";
 
 export class PeriodValidator {
     isEndDateAfterStartDate(period: InputPeriod) {
@@ -6,8 +6,8 @@ export class PeriodValidator {
       if (isEndDateGreaterThanStartDate <= 0) return false;
       return true;
     }
-    isUniquePeriod(periods: InputPeriod[],period:InputPeriod) {
-      return !periods.find(existPeriod=>period === existPeriod);
+    isUniquePeriod(periods: Period[],period:InputPeriod) {
+      return !periods.find(existPeriod=>period.start === existPeriod.start && period.end === existPeriod.end );
     }
   }
   

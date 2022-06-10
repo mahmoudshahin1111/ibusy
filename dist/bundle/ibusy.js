@@ -2,16 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IBusy = void 0;
 var error_1 = require("./error");
-var types_1 = require("./types");
 var validators_1 = require("./validators");
 var IBusy = /** @class */ (function () {
     function IBusy() {
-        this.timeUnit = types_1.TimeUnit.millSeconds;
         this.periodValidator = new validators_1.PeriodValidator();
-        this._config = {
-            dateFormat: "YYYY-MM-DDTHH:mm:ss.sssZ",
-            locale: "en-US"
-        };
     }
     /**
      * get the allowed periods between these periods, also can be into different days
@@ -51,39 +45,37 @@ var IBusy = /** @class */ (function () {
         var filteredAllowedPeriods = [];
         for (var _b = 0, filteredAvailablePeriods_1 = filteredAvailablePeriods; _b < filteredAvailablePeriods_1.length; _b++) {
             var allowedPeriod = filteredAvailablePeriods_1[_b];
-            var currentPeriodStartTime = allowedPeriod.startTime;
-            var currentPeriodEndTime = allowedPeriod.endTime;
+            var currentPeriodStartTime = allowedPeriod.start;
+            var currentPeriodEndTime = allowedPeriod.end;
             var disallowedPeriodsIndex = 0;
             while (disallowedPeriodsIndex < filteredAppointmentPeriods.length) {
                 var disAllowedPeriod = filteredAppointmentPeriods[disallowedPeriodsIndex];
-                if (disAllowedPeriod.startTime <= currentPeriodStartTime &&
-                    disAllowedPeriod.endTime > currentPeriodStartTime &&
-                    disAllowedPeriod.endTime < currentPeriodEndTime) {
-                    currentPeriodStartTime = disAllowedPeriod.endTime;
+                if (disAllowedPeriod.start <= currentPeriodStartTime &&
+                    disAllowedPeriod.end > currentPeriodStartTime &&
+                    disAllowedPeriod.end < currentPeriodEndTime) {
+                    currentPeriodStartTime = disAllowedPeriod.end;
                 }
-                else if (disAllowedPeriod.startTime > currentPeriodStartTime) {
-                    currentPeriodEndTime = disAllowedPeriod.startTime;
+                else if (disAllowedPeriod.start > currentPeriodStartTime) {
+                    currentPeriodEndTime = disAllowedPeriod.start;
                     filteredAllowedPeriods.push({
-                        start: this.convertToDate(currentPeriodStartTime),
-                        end: this.convertToDate(currentPeriodEndTime),
-                        startTime: currentPeriodStartTime,
-                        endTime: currentPeriodEndTime,
-                        duration: currentPeriodEndTime - currentPeriodStartTime
+                        start: currentPeriodStartTime,
+                        end: currentPeriodEndTime,
+                        duration: currentPeriodEndTime - currentPeriodStartTime,
                     });
-                    if (disAllowedPeriod.endTime > currentPeriodStartTime && disAllowedPeriod.endTime < allowedPeriod.endTime) {
-                        currentPeriodStartTime = disAllowedPeriod.endTime;
+                    if (disAllowedPeriod.end > currentPeriodStartTime &&
+                        disAllowedPeriod.end < allowedPeriod.end) {
+                        currentPeriodStartTime = disAllowedPeriod.end;
                     }
-                    currentPeriodEndTime = allowedPeriod.endTime;
+                    currentPeriodEndTime = allowedPeriod.end;
                 }
-                if (disallowedPeriodsIndex === filteredAppointmentPeriods.length - 1 && disAllowedPeriod.endTime < allowedPeriod.endTime) {
-                    currentPeriodStartTime = disAllowedPeriod.endTime;
-                    currentPeriodEndTime = allowedPeriod.endTime;
+                if (disallowedPeriodsIndex === filteredAppointmentPeriods.length - 1 &&
+                    disAllowedPeriod.end < allowedPeriod.end) {
+                    currentPeriodStartTime = disAllowedPeriod.end;
+                    currentPeriodEndTime = allowedPeriod.end;
                     filteredAllowedPeriods.push({
-                        start: this.convertToDate(currentPeriodStartTime),
-                        end: this.convertToDate(currentPeriodEndTime),
-                        startTime: currentPeriodStartTime,
-                        endTime: currentPeriodEndTime,
-                        duration: currentPeriodEndTime - currentPeriodStartTime
+                        start: currentPeriodStartTime,
+                        end: currentPeriodEndTime,
+                        duration: currentPeriodEndTime - currentPeriodStartTime,
                     });
                 }
                 disallowedPeriodsIndex++;
@@ -92,17 +84,15 @@ var IBusy = /** @class */ (function () {
         return filteredAllowedPeriods;
     };
     /**
-     * transform the input period to the period of type ca i use into ibusy
+     * transform the input period to the period
      * @param inputPeriod
      * @returns
      */
     IBusy.prototype.transformToPeriod = function (inputPeriod) {
         return {
-            start: this.convertToDate(this.convertDateToUnit(inputPeriod.start, types_1.TimeUnit.millSeconds)),
-            end: this.convertToDate(this.convertDateToUnit(inputPeriod.end, types_1.TimeUnit.millSeconds)),
-            startTime: this.convertDateToUnit(inputPeriod.start, this.timeUnit),
-            endTime: this.convertDateToUnit(inputPeriod.end, this.timeUnit),
-            duration: this.convertDateToUnit(inputPeriod.end, this.timeUnit) - this.convertDateToUnit(inputPeriod.start, this.timeUnit)
+            start: inputPeriod.start,
+            end: inputPeriod.end,
+            duration: inputPeriod.end - inputPeriod.start,
         };
     };
     /**
@@ -112,26 +102,6 @@ var IBusy = /** @class */ (function () {
      */
     IBusy.prototype.convertToDate = function (millSeconds) {
         return new Date(millSeconds).toString();
-    };
-    /**
-     * convert the date as string formatted in "YYYY-MM-DDTHH:mm:ss.sssZ" to selected unit
-     * @param date
-     * @param unit
-     * @returns
-     */
-    IBusy.prototype.convertDateToUnit = function (date, unit) {
-        var millSeconds = new Date(date).getTime();
-        var timezoneMillSeconds = 0; //new Date().getTimezoneOffset() * 60 * 1000;
-        switch (unit) {
-            case types_1.TimeUnit.hours:
-                return (millSeconds + timezoneMillSeconds) / (60 * 60 * 1000);
-            case types_1.TimeUnit.minutes:
-                return (millSeconds + timezoneMillSeconds) / (60 * 1000);
-            case types_1.TimeUnit.seconds:
-                return (millSeconds + timezoneMillSeconds) / 1000;
-            default:
-                return millSeconds + timezoneMillSeconds;
-        }
     };
     /**
      * get a filtered periods after remove every overlapped periods and sorting them
@@ -148,22 +118,22 @@ var IBusy = /** @class */ (function () {
             return 0;
         });
         var currentPeriodIndex = 0;
-        var currentPeriodStart = periods[currentPeriodIndex].startTime;
-        var currentPeriodEnd = periods[currentPeriodIndex].endTime;
+        var currentPeriodStart = periods[currentPeriodIndex].start;
+        var currentPeriodEnd = periods[currentPeriodIndex].end;
         while (currentPeriodIndex < periods.length) {
             if (!periods[currentPeriodIndex + 1]) {
                 mergedPeriods.push({
-                    start: this.convertToDate(currentPeriodStart),
-                    end: this.convertToDate(currentPeriodEnd),
-                    startTime: currentPeriodStart,
-                    endTime: currentPeriodEnd,
-                    duration: currentPeriodEnd - currentPeriodStart
+                    start: currentPeriodStart,
+                    end: currentPeriodEnd,
+                    duration: currentPeriodEnd - currentPeriodStart,
                 });
                 break;
             }
-            var nextPeriodStart = periods[currentPeriodIndex + 1].startTime;
-            var nextPeriodEnd = periods[currentPeriodIndex + 1].endTime;
-            if (nextPeriodEnd > currentPeriodEnd && nextPeriodStart < currentPeriodEnd && nextPeriodStart > currentPeriodStart) {
+            var nextPeriodStart = periods[currentPeriodIndex + 1].start;
+            var nextPeriodEnd = periods[currentPeriodIndex + 1].end;
+            if (nextPeriodEnd > currentPeriodEnd &&
+                nextPeriodStart < currentPeriodEnd &&
+                nextPeriodStart > currentPeriodStart) {
                 currentPeriodEnd = nextPeriodEnd;
             }
             else if (currentPeriodEnd === nextPeriodStart) {
@@ -171,11 +141,9 @@ var IBusy = /** @class */ (function () {
             }
             else if (nextPeriodStart > currentPeriodEnd) {
                 mergedPeriods.push({
-                    start: this.convertToDate(currentPeriodStart),
-                    end: this.convertToDate(currentPeriodEnd),
-                    startTime: currentPeriodStart,
-                    endTime: currentPeriodEnd,
-                    duration: currentPeriodEnd - currentPeriodStart
+                    start: currentPeriodStart,
+                    end: currentPeriodEnd,
+                    duration: currentPeriodEnd - currentPeriodStart,
                 });
                 currentPeriodStart = nextPeriodStart;
                 currentPeriodEnd = nextPeriodEnd;
